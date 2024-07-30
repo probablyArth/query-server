@@ -1,6 +1,6 @@
 import type { Request } from "express";
 import { RESERVED_KEYS } from "../constants/query";
-import { DataRecord } from "../types";
+import { DataRecord } from "../schemas";
 
 const filterByField = (
   item: DataRecord,
