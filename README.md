@@ -2,9 +2,9 @@
 
 # Environment Variables
 
-```.env
-PORT = <numeric string> (default: 8000)
-DATA_URL = <string> (default: https://microsoftedge.github.io/Demos/json-dummy-data/256KB.json)
+```python
+PORT = <numeric string> (default: "8000")
+DATA_URL = <string> (default: "https://microsoftedge.github.io/Demos/json-dummy-data/256KB.json")
 
 ```
 
