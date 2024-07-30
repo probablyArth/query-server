@@ -1,10 +1,10 @@
 import type { Request } from "express";
-import { RESERVED_KEYS } from "../constants/query";
+import { FIELDS, RESERVED_KEYS } from "../constants/query";
 import { DataRecord } from "../schemas";
 
 const filterByField = (
   item: DataRecord,
-  key: string,
+  key: keyof DataRecord,
   value: string,
   case_insensitive: boolean = false
 ) => {
@@ -32,10 +32,11 @@ export const executeQueries = (data: DataRecord[], query: Request["query"]) => {
 
   let resData = [...data];
 
-  for (const key in query) {
-    if (RESERVED_KEYS.includes(key)) {
+  for (const stringKey in query) {
+    if (RESERVED_KEYS.includes(stringKey) || !FIELDS.includes(stringKey)) {
       continue;
     }
+    const key = stringKey as keyof DataRecord;
     const field_value = query[key];
     if (typeof field_value === "string") {
       resData = resData.filter((item) => {
@@ -59,12 +60,13 @@ export const executeQueries = (data: DataRecord[], query: Request["query"]) => {
     }
   }
 
-  if (typeof sortBy === "string") {
+  if (typeof sortBy === "string" && FIELDS.includes(sortBy)) {
+    const typedSortBy = sortBy as keyof DataRecord;
     resData.sort((a, b) => {
-      if (typeof a[sortBy] === "string") {
-        return a[sortBy].localeCompare(b[sortBy] as string);
+      if (typeof a[typedSortBy] === "string") {
+        return a[typedSortBy].localeCompare(b[typedSortBy] as string);
       } else {
-        return (a[sortBy] as number) - (b[sortBy] as number);
+        return (a[typedSortBy] as number) - (b[typedSortBy] as number);
       }
     });
   }

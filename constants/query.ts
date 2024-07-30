@@ -5,3 +5,5 @@ export const RESERVED_KEYS = [
   "offset",
   "case_insensitive",
 ];
+
+export const FIELDS = ["name", "language", "id", "bio", "version"];
