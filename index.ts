@@ -5,7 +5,6 @@ import Express from "express";
 import { executeQueries } from "./libs/queryEngine";
 import { fetchData } from "./libs/data";
 import logger from "./middlewares/logger";
-import { z } from "zod";
 import { DataRecord, dataShape } from "./schemas";
 
 const app = Express();
