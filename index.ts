@@ -12,6 +12,10 @@ app.use(logger());
 
 let data: DataRecord[] = [];
 
+app.get("/health", (_, res) => {
+  res.sendStatus(200);
+});
+
 app.get("/data", (req, res) => {
   const resData = executeQueries(data, req.query);
   res.json(resData);
