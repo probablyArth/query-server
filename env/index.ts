@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 
 const envSchema = z.object({
   PORT: z.string().default("8000"),
-  NODE_ENV: z.string().default("development"),
   DATA_URL: z
     .string()
     .default(

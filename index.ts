@@ -11,7 +11,7 @@ app.use(logger());
 
 let data: Record<string, string | number>[] = [];
 
-app.get("/", (req, res) => {
+app.get("/data", (req, res) => {
   const resData = executeQueries(data, req.query);
   res.json(resData);
 });
